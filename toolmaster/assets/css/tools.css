@@ -1,0 +1,902 @@
+/* Color Picker Styles */
+.color-preview {
+    width: 100%;
+    height: 100px;
+    border: 1px solid #dee2e6;
+    border-radius: 4
+}
+
+/* Image Tool Styles */
+.drop-zone {
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    background: #f8f9fa;
+    cursor: pointer;
+}
+
+.drop-zone:hover {
+    border-color: #007bff;
+    background: #e9ecef;
+}
+
+.preview-container {
+    background-image: linear-gradient(45deg, #f0f0f0 25%, transparent 25%),
+                      linear-gradient(-45deg, #f0f0f0 25%, transparent 25%),
+                      linear-gradient(45deg, transparent 75%, #f0f0f0 75%),
+                      linear-gradient(-45deg, transparent 75%, #f0f0f0 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.preview-container img {
+    max-width: 100%;
+    height: auto;
+}
+
+.file-info {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 4px;
+    margin-top: 1rem;
+}
+
+.file-info p {
+    margin-bottom: 0.5rem;
+}
+
+/* Quality Slider */
+.form-range::-webkit-slider-thumb {
+    background: #007bff;
+}
+
+.form-range::-moz-range-thumb {
+    background: #007bff;
+}
+
+/* Download Button */
+.btn-download {
+    min-width: 200px;
+}
+
+/* Background Remover Styles */
+.card-body {
+    background-color: #fff;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.card-body img {
+    max-width: 100%;
+    max-height: 400px;
+    object-fit: contain;
+}
+
+#imageQueue .card {
+    height: 150px;
+    margin-bottom: 10px;
+}
+
+#imageQueue .card-img-top {
+    height: 100px;
+    object-fit: cover;
+}
+
+.progress {
+    height: 0.5rem;
+}
+
+.btn-toolbar {
+    gap: 0.5rem;
+}
+
+/* Cropper.js customization */
+.cropper-view-box,
+.cropper-face {
+    border-radius: 0;
+}
+
+.cropper-line,
+.cropper-point {
+    background-color: #007bff;
+}
+
+/* Custom background preview */
+.bg-preview {
+    width: 100%;
+    height: 100px;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .btn-toolbar {
+        flex-wrap: wrap;
+    }
+    
+    .btn-toolbar .btn {
+        margin-bottom: 0.5rem;
+    }
+}
+
+#processingMessage {
+    margin: 1rem 0;
+}
+
+/* Transparent background pattern for result preview */
+#resultPreview {
+    background-image: linear-gradient(45deg, #f0f0f0 25%, transparent 25%),
+                      linear-gradient(-45deg, #f0f0f0 25%, transparent 25%),
+                      linear-gradient(45deg, transparent 75%, #f0f0f0 75%),
+                      linear-gradient(-45deg, transparent 75%, #f0f0f0 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+}
+
+/* Format Converter Styles */
+.format-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.format-item {
+    text-align: center;
+    padding: 1rem;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.format-item i {
+    font-size: 2rem;
+    color: #007bff;
+    margin-bottom: 0.5rem;
+}
+
+.format-item small {
+    display: block;
+    color: #6c757d;
+}
+
+.drop-zone {
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    background: #f8f9fa;
+}
+
+.drop-zone.minimized {
+    padding: 1rem;
+}
+
+.drop-zone:hover {
+    border-color: #007bff;
+    background: #e9ecef;
+}
+
+.queue-container {
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    background: #fff;
+}
+
+.queue-item {
+    padding: 1rem;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.queue-item:last-child {
+    border-bottom: none;
+}
+
+.queue-item-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.queue-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.queue-item-info {
+    flex: 1;
+}
+
+.queue-item-name {
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+
+.queue-item-size {
+    font-size: 0.875rem;
+    color: #6c757d;
+}
+
+.queue-item-status {
+    margin-right: 1rem;
+}
+
+.queue-item-progress {
+    margin-top: 0.5rem;
+}
+
+.progress {
+    height: 0.5rem;
+}
+
+.format-buttons {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.format-buttons .btn-group {
+    flex-wrap: wrap;
+}
+
+.btn-check:checked + .btn-outline-primary {
+    background-color: #007bff;
+    color: #fff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .format-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .queue-item-content {
+        flex-wrap: wrap;
+    }
+
+    .queue-item img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .btn-toolbar {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .btn-toolbar .btn {
+        width: 100%;
+    }
+}
+
+/* Encryption Tool Styles */
+.algorithm-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.algorithm-item {
+    text-align: center;
+    padding: 1rem;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.algorithm-item .badge {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.algorithm-item small {
+    display: block;
+    color: #6c757d;
+}
+
+.key-settings {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.input-group-text {
+    cursor: pointer;
+}
+
+#output {
+    font-family: monospace;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+.btn-group {
+    margin-bottom: 1rem;
+}
+
+.form-check {
+    margin-bottom: 0.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .algorithm-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .btn-group {
+        flex-direction: column;
+    }
+
+    .btn-group > .btn {
+        border-radius: 0.25rem !important;
+        margin-bottom: 0.5rem;
+    }
+}
+
+/* Add these styles to your existing tools.css file */
+
+.stats-card {
+    background-color: #fff;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    margin-bottom: 1rem;
+}
+
+.stats-icon {
+    font-size: 2rem;
+    color: #0d6efd;
+    margin-bottom: 1rem;
+}
+
+.stats-value {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.stats-label {
+    color: #6c757d;
+    font-size: 0.875rem;
+}
+
+.progress-bar-container {
+    height: 0.5rem;
+    background-color: #e9ecef;
+    border-radius: 0.25rem;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    border-radius: 0.25rem;
+    transition: width 0.3s ease;
+}
+
+.anchor-text-distribution {
+    height: 1.5rem;
+    background-color: #e9ecef;
+    border-radius: 0.25rem;
+    overflow: hidden;
+}
+
+.anchor-text-bar {
+    height: 100%;
+    float: left;
+}
+
+.table th {
+    font-weight: 600;
+}
+
+.domain-authority {
+    font-weight: bold;
+}
+
+.domain-authority.
+
+.badge {
+    cursor: help;
+}
+
+#densityChart {
+    height: 300px;
+}
+
+@media (max-width: 768px) {
+    .stats-card {
+        margin-bottom: 1rem;
+    }
+}
+
+.calculator-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.display-container {
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+}
+
+.matrix-container {
+    overflow-x: auto;
+}
+
+.matrix-table {
+    border-collapse: separate;
+    border-spacing: 2px;
+    margin: 0 auto;
+}
+
+.matrix-table td {
+    padding: 0;
+    width: 60px;
+}
+
+.matrix-table input {
+    width: 100%;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    padding: 0.25rem;
+    text-align: center;
+}
+
+.matrix-bracket {
+    position: relative;
+    padding: 0 10px;
+}
+
+.matrix-bracket::before,
+.matrix-bracket::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: #000;
+}
+
+.matrix-bracket::before {
+    left: 0;
+}
+
+.matrix-bracket::after {
+    right: 0;
+}
+
+.matrix-bracket::before {
+    border-left: 2px solid #000;
+}
+
+.matrix-bracket::after {
+    border-right: 2px solid #000;
+}
+
+.step-item {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.step-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.step-number {
+    font-weight: bold;
+    color: #0d6efd;
+    margin-bottom: 0.5rem;
+}
+
+.step-description {
+    margin-bottom: 0.5rem;
+}
+
+.step-matrix {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: 0.25rem;
+    overflow-x: auto;
+}
+
+@media (max-width: 576px) {
+    .matrix-table input {
+        width: 40px;
+        font-size: 0.875rem;
+    }
+}
+
+/* Add these styles to your existing tools.css file */
+
+.category-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    height: 100%;
+}
+
+.category-btn i {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.formula-display {
+    font-family: monospace;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-radius: 0.25rem;
+    white-space: pre-wrap;
+}
+
+.conversion-history {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.history-item {
+    padding: 0.5rem;
+    border-bottom: 1px solid #dee2e6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.history-item:last-child {
+    border-bottom: none;
+}
+
+.history-text {
+    flex-grow: 1;
+}
+
+.history-actions {
+    flex-shrink: 0;
+    margin-left: 1rem;
+}
+
+.common-conversion {
+    background-color: #f8f9fa;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.common-conversion:hover {
+    background-color: #e9ecef;
+}
+
+.common-value {
+    font-weight: bold;
+}
+
+.common-units {
+    font-size: 0.875rem;
+    color: #6c757d;
+}
+
+@media (max-width: 768px) {
+    .category-btn {
+        padding: 0.5rem;
+    }
+
+    .category-btn i {
+        font-size: 1.25rem;
+        margin-bottom: 0.25rem;
+    }
+}
+
+/* Add these styles to your existing tools.css file */
+
+.tool-container {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: #fff;
+    padding: 1rem 0;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.editor-settings {
+    position: sticky;
+    top: 60px;
+    z-index: 100;
+    background-color: #fff;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.CodeMirror {
+    height: 500px;
+    border: 1px solid #dee2e6;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', monospace;
+    font-size: 14px;
+}
+
+.json-tree {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.tree-item {
+    padding: 2px 0;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.tree-item:hover {
+    background-color: #f8f9fa;
+}
+
+.tree-toggle {
+    display: inline-block;
+    width: 16px;
+    text-align: center;
+    color: #6c757d;
+}
+
+.tree-key {
+    color: #d63384;
+}
+
+.tree-value {
+    color: #0d6efd;
+}
+
+.tree-type {
+    color: #6c757d;
+    font-size: 0.875em;
+}
+
+.validation-results {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.validation-item {
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    border-radius: 0.25rem;
+}
+
+.validation-item.error {
+    background-color: #f8d7da;
+    border: 1px solid #f5c2c7;
+}
+
+.validation-item.warning {
+    background-color: #fff3cd;
+    border: 1px solid #ffecb5;
+}
+
+.validation-item.success {
+    background-color: #d1e7dd;
+    border: 1px solid #badbcc;
+}
+
+.path-result {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: 0.25rem;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.path-result pre {
+    margin: 0;
+}
+
+.stats {
+    font-size: 0.875rem;
+}
+
+.stats .badge {
+    margin-left: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .toolbar .btn-group {
+        margin-bottom: 0.5rem;
+    }
+
+    .CodeMirror {
+        height: 300px;
+    }
+}
+
+/* Add these styles to your existing tools.css file */
+
+.score-circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border: 10px solid #f8f9fa;
+}
+
+.score-circle::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border-radius: 50%;
+    border: 10px solid;
+    border-color: inherit;
+    clip: rect(0, 150px, 150px, 75px);
+}
+
+.score-number {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.score-label {
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.metric-card {
+    text-align: center;
+    padding: 1rem;
+    border: 1px solid #dee2e6;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.metric-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.metric-value {
+    font-size: 2rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.metric-label {
+    color: #6c757d;
+    margin-bottom: 0.5rem;
+}
+
+.metric-info {
+    font-size: 0.875rem;
+    color: #6c757d;
+}
+
+.status-badge {
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.status-good {
+    background-color: #d1e7dd;
+    color: #0f5132;
+}
+
+.status-moderate {
+    background-color: #fff3cd;
+    color: #664d03;
+}
+
+.status-poor {
+    background-color: #f8d7da;
+    color: #842029;
+}
+
+.optimization-item {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border: 1px solid #dee2e6;
+    border-radius: 0.5rem;
+}
+
+.optimization-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.optimization-title {
+    font-weight: 500;
+    margin: 0;
+}
+
+.optimization-impact {
+    font-size: 0.875rem;
+}
+
+.optimization-content {
+    font-size: 0.875rem;
+    color: #6c757d;
+}
+
+.resource-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.resource-item:last-child {
+    border-bottom: none;
+}
+
+.resource-info {
+    flex-grow: 1;
+}
+
+.resource-size {
+    margin-left: 1rem;
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    .score-circle {
+        width: 120px;
+        height: 120px;
+    }
+
+    .score-number {
+        font-size: 2rem;
+    }
+
+    .metric-value {
+        font-size: 1.5rem;
+    }
+}
+
+/* Add these styles to your existing tools.css file */
+
+.counter-card {
+    background-color: #fff;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    margin-bottom: 1rem;
+} 

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Speed Checker - Multi-Tools</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/tools.css">
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <main class="container py-4">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="tool-container">
+                    <h1>Page Speed Checker</h1>
+
+                    <div class="alert alert-info mb-4">
+                        <h5><i class="fas fa-tachometer-alt"></i> Analyze your website's performance</h5>
+                        <p class="mb-0">
+                            Get detailed insights about your website's loading speed and performance metrics.
+                        </p>
+                    </div>
+
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="mb-0">URL Input</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="input-group mb-3">
+                                <input type="url" class="form-control" id="urlInput" 
+                                       placeholder="Enter website URL (e.g., https://example.com)">
+                                <button class="btn btn-primary" id="analyzeBtn">
+                                    <i class="fas fa-search"></i> Analyze
+                                </button>
+                            </div>
+                            <div class="form-text">
+                                Test your website's performance on both mobile and desktop devices.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="loadingIndicator" class="text-center mb-4" style="display: none;">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <p class="mt-2">Analyzing website performance...</p>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated" 
+                                 role="progressbar" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div id="resultsContainer" style="display: none;">
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="mb-0">
+                                            <i class="fas fa-mobile-alt"></i> Mobile Score
+                                        </h5>
+                                    </div>
+                                    <div class="card-body text-center">
+                                        <div class="score-circle mobile-score">
+                                            <div class="score-number" id="mobileScore">0</div>
+                                        </div>
+                                        <div class="score-label mt-2" id="mobileScoreLabel">Poor</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="mb-0">
+                                            <i class="fas fa-desktop"></i> Desktop Score
+                                        </h5>
+                                    </div>
+                                    <div class="card-body text-center">
+                                        <div class="score-circle desktop-score">
+                                            <div class="score-number" id="desktopScore">0</div>
+                                        </div>
+                                        <div class="score-label mt-2" id="desktopScoreLabel">Poor</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h5 class="mb-0">Core Web Vitals</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="metric-card">
+                                            <div class="metric-title">LCP</div>
+                                            <div class="metric-value" id="lcpValue">0 s</div>
+                                            <div class="metric-label">Largest Contentful Paint</div>
+                                            <div class="metric-info" id="lcpInfo"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="metric-card">
+                                            <div class="metric-title">FID</div>
+                                            <div class="metric-value" id="fidValue">0 ms</div>
+                                            <div class="metric-label">First Input Delay</div>
+                                            <div class="metric-info" id="fidInfo"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="metric-card">
+                                            <div class="metric-title">CLS</div>
+                                            <div class="metric-value" id="clsValue">0</div>
+                                            <div class="metric-label">Cumulative Layout Shift</div>
+                                            <div class="metric-info" id="clsInfo"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h5 class="mb-0">Performance Metrics</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Metric</th>
+                                                <th>Value</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="metricsTable"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card mb-4">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h5 class="mb-0">Optimization Opportunities</h5>
+                                <div class="btn-group">
+                                    <button class="btn btn-sm btn-outline-primary" id="expandAllBtn">
+                                        Expand All
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-primary" id="collapseAllBtn">
+                                        Collapse All
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="accordion" id="optimizationAccordion"></div>
+                            </div>
+                        </div>
+
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h5 class="mb-0">Resource Breakdown</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <canvas id="resourceTypesChart"></canvas>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <canvas id="resourceSizesChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="btn-toolbar justify-content-end">
+                            <button class="btn btn-primary me-2" id="downloadReportBtn">
+                                <i class="fas fa-download"></i> Download Report
+                            </button>
+                            <button class="btn btn-outline-primary" id="shareResultsBtn">
+                                <i class="fas fa-share-alt"></i> Share Results
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="ad-container">
+                    Ad Space
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Share Modal -->
+    <div class="modal fade" id="shareModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Share Results</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Share Link</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="shareLink" readonly>
+                            <button class="btn btn-outline-primary" id="copyShareLinkBtn">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-outline-primary" id="twitterShareBtn">
+                            <i class="fab fa-twitter"></i> Share on Twitter
+                        </button>
+                        <button class="btn btn-outline-primary" id="linkedinShareBtn">
+                            <i class="fab fa-linkedin"></i> Share on LinkedIn
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/assets/js/common.js"></script>
+    <script src="/assets/js/tools/page-speed-checker.js"></script>
+</body>
+</html> 

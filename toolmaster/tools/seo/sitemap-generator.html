@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XML Sitemap Generator - Multi-Tools</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/tools.css">
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <main class="container py-4">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="tool-container">
+                    <h1>XML Sitemap Generator</h1>
+                    
+                    <div class="alert alert-info mb-4">
+                        <h5><i class="fas fa-sitemap"></i> What is an XML Sitemap?</h5>
+                        <p class="mb-0">
+                            An XML sitemap helps search engines understand the structure of your website 
+                            and find all your important pages.
+                        </p>
+                    </div>
+
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="mb-0">Site Information</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label class="form-label">Website URL</label>
+                                <input type="url" class="form-control" id="websiteUrl" 
+                                       placeholder="https://example.com">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Default Settings</label>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <select class="form-select" id="defaultChangefreq">
+                                            <option value="">Change Frequency</option>
+                                            <option value="always">Always</option>
+                                            <option value="hourly">Hourly</option>
+                                            <option value="daily">Daily</option>
+                                            <option value="weekly">Weekly</option>
+                                            <option value="monthly">Monthly</option>
+                                            <option value="yearly">Yearly</option>
+                                            <option value="never">Never</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <select class="form-select" id="defaultPriority">
+                                            <option value="">Priority</option>
+                                            <option value="1.0">1.0</option>
+                                            <option value="0.9">0.9</option>
+                                            <option value="0.8">0.8</option>
+                                            <option value="0.7">0.7</option>
+                                            <option value="0.6">0.6</option>
+                                            <option value="0.5">0.5</option>
+                                            <option value="0.4">0.4</option>
+                                            <option value="0.3">0.3</option>
+                                            <option value="0.2">0.2</option>
+                                            <option value="0.1">0.1</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-4">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">URL Entries</h5>
+                            <div class="btn-group">
+                                <button class="btn btn-primary btn-sm" id="addUrlBtn">
+                                    <i class="fas fa-plus"></i> Add URL
+                                </button>
+                                <button class="btn btn-outline-secondary btn-sm" id="importUrlsBtn">
+                                    <i class="fas fa-file-import"></i> Import URLs
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div id="urlEntries"></div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="mb-0">Additional Settings</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-check mb-3">
+                                        <input class="form-check-input" type="checkbox" id="includeLastmod" checked>
+                                        <label class="form-check-label">
+                                            Include last modified date
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-check mb-3">
+                                        <input class="form-check-input" type="checkbox" id="prettyPrint" checked>
+                                        <label class="form-check-label">
+                                            Pretty print XML
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-4">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">Generated Sitemap</h5>
+                            <div class="btn-group">
+                                <button class="btn btn-primary" id="generateBtn">
+                                    <i class="fas fa-sync-alt"></i> Generate
+                                </button>
+                                <button class="btn btn-outline-secondary" id="copyBtn">
+                                    <i class="fas fa-copy"></i> Copy
+                                </button>
+                                <button class="btn btn-outline-success" id="downloadBtn">
+                                    <i class="fas fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <pre><code id="generatedCode" class="xml"></code></pre>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-warning">
+                        <h5><i class="fas fa-exclamation-triangle"></i> Important Notes:</h5>
+                        <ul class="mb-0">
+                            <li>The sitemap file must be placed in the root directory of your website.</li>
+                            <li>Maximum size: 50MB or 50,000 URLs per sitemap file.</li>
+                            <li>Use sitemap index files if you need to list more URLs.</li>
+                            <li>Submit your sitemap to search engines via their webmaster tools.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="ad-container">
+                    Ad Space
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Import URLs Modal -->
+    <div class="modal fade" id="importModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Import URLs</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Paste URLs (one per line)</label>
+                        <textarea class="form-control" id="importUrls" rows="10"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="importConfirmBtn">Import</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/common.js"></script>
+    <script src="/assets/js/tools/sitemap-generator.js"></script>
+</body>
+</html> 

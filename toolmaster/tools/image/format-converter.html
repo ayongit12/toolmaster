@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Format Converter - Multi-Tools</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/tools.css">
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <main class="container py-4">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="tool-container">
+                    <h1>Image Format Converter</h1>
+
+                    <div class="alert alert-info mb-4">
+                        <h5><i class="fas fa-info-circle"></i> Supported Formats:</h5>
+                        <div class="format-grid">
+                            <div class="format-item">
+                                <i class="fas fa-file-image"></i> PNG
+                                <small>Lossless, transparency</small>
+                            </div>
+                            <div class="format-item">
+                                <i class="fas fa-file-image"></i> JPEG
+                                <small>Best for photos</small>
+                            </div>
+                            <div class="format-item">
+                                <i class="fas fa-file-image"></i> WebP
+                                <small>Modern, efficient</small>
+                            </div>
+                            <div class="format-item">
+                                <i class="fas fa-file-image"></i> AVIF
+                                <small>Next-gen format</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="drop-zone mb-4" id="dropZone">
+                        <div class="text-center">
+                            <i class="fas fa-cloud-upload-alt fa-3x mb-3"></i>
+                            <p>Drag and drop your images here or</p>
+                            <input type="file" id="fileInput" accept="image/*" multiple class="d-none">
+                            <button class="btn btn-primary" onclick="document.getElementById('fileInput').click()">
+                                Choose Images
+                            </button>
+                            <p class="text-muted mt-2">Maximum 10 images, 10MB each</p>
+                        </div>
+                    </div>
+
+                    <div id="converterOptions" class="d-none">
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <div class="card h-100">
+                                    <div class="card-header">
+                                        <h5 class="card-title mb-0">Convert To</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="format-buttons">
+                                            <div class="btn-group w-100" role="group">
+                                                <input type="radio" class="btn-check" name="outputFormat" id="formatPNG" value="png" checked>
+                                                <label class="btn btn-outline-primary" for="formatPNG">
+                                                    <i class="fas fa-file-image"></i> PNG
+                                                </label>
+                                                <input type="radio" class="btn-check" name="outputFormat" id="formatJPG" value="jpeg">
+                                                <label class="btn btn-outline-primary" for="formatJPG">
+                                                    <i class="fas fa-file-image"></i> JPEG
+                                                </label>
+                                                <input type="radio" class="btn-check" name="outputFormat" id="formatWEBP" value="webp">
+                                                <label class="btn btn-outline-primary" for="formatWEBP">
+                                                    <i class="fas fa-file-image"></i> WebP
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100">
+                                    <div class="card-header">
+                                        <h5 class="card-title mb-0">Quality Settings</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="mb-3">
+                                            <label class="form-label d-flex justify-content-between">
+                                                Quality
+                                                <span id="qualityValue">90%</span>
+                                            </label>
+                                            <input type="range" class="form-range" id="quality" min="1" max="100" value="90">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="preserveMetadata" checked>
+                                            <label class="form-check-label">
+                                                Preserve metadata (EXIF)
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="imageQueue" class="mb-4">
+                            <h5>Images to Convert</h5>
+                            <div class="queue-container"></div>
+                        </div>
+
+                        <div class="conversion-progress d-none mb-4">
+                            <div class="progress-info d-flex justify-content-between mb-2">
+                                <span>Converting images...</span>
+                                <span id="progressCount">0/0</span>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated" 
+                                     role="progressbar" style="width: 0%"></div>
+                            </div>
+                        </div>
+
+                        <div class="btn-toolbar">
+                            <button id="convertBtn" class="btn btn-success me-2">
+                                <i class="fas fa-sync-alt"></i> Convert All
+                            </button>
+                            <button id="clearBtn" class="btn btn-outline-secondary me-2">
+                                <i class="fas fa-trash"></i> Clear All
+                            </button>
+                            <div class="ms-auto">
+                                <div class="btn-group">
+                                    <button id="downloadBtn" class="btn btn-primary" disabled>
+                                        <i class="fas fa-download"></i> Download
+                                    </button>
+                                    <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" 
+                                            data-bs-toggle="dropdown">
+                                        <span class="visually-hidden">Toggle Dropdown</span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#" id="downloadSingle">Download Current</a></li>
+                                        <li><a class="dropdown-item" href="#" id="downloadAll">Download All as ZIP</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="ad-container">
+                    Ad Space
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+    <script src="/assets/js/common.js"></script>
+    <script src="/assets/js/tools/format-converter.js"></script>
+</body>
+</html> 

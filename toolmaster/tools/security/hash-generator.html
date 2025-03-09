@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hash Generator - Multi-Tools</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/tools.css">
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <main class="container py-4">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="tool-container">
+                    <h1>Hash Generator</h1>
+
+                    <div class="alert alert-info mb-4">
+                        <h5><i class="fas fa-info-circle"></i> Supported Hash Types:</h5>
+                        <div class="hash-types-grid">
+                            <div class="hash-type">
+                                <span class="badge bg-primary">MD5</span>
+                                <small>128-bit hash</small>
+                            </div>
+                            <div class="hash-type">
+                                <span class="badge bg-primary">SHA-1</span>
+                                <small>160-bit hash</small>
+                            </div>
+                            <div class="hash-type">
+                                <span class="badge bg-primary">SHA-256</span>
+                                <small>256-bit hash</small>
+                            </div>
+                            <div class="hash-type">
+                                <span class="badge bg-primary">SHA-512</span>
+                                <small>512-bit hash</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Input</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label class="form-label">Input Type</label>
+                                <div class="btn-group w-100" role="group">
+                                    <input type="radio" class="btn-check" name="inputType" id="textInput" checked>
+                                    <label class="btn btn-outline-primary" for="textInput">
+                                        <i class="fas fa-font"></i> Text
+                                    </label>
+                                    <input type="radio" class="btn-check" name="inputType" id="fileInput">
+                                    <label class="btn btn-outline-primary" for="fileInput">
+                                        <i class="fas fa-file"></i> File
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div id="textInputContainer">
+                                <textarea class="form-control" id="inputText" rows="5" 
+                                        placeholder="Enter text to hash..."></textarea>
+                            </div>
+
+                            <div id="fileInputContainer" class="d-none">
+                                <div class="drop-zone" id="dropZone">
+                                    <div class="text-center">
+                                        <i class="fas fa-file-upload fa-3x mb-3"></i>
+                                        <p>Drag and drop your file here or</p>
+                                        <input type="file" id="fileUpload" class="d-none">
+                                        <button class="btn btn-primary" onclick="document.getElementById('fileUpload').click()">
+                                            Choose File
+                                        </button>
+                                    </div>
+                                </div>
+                                <div id="fileInfo" class="mt-2 d-none">
+                                    <div class="alert alert-info">
+                                        <i class="fas fa-file"></i>
+                                        <span id="fileName"></span>
+                                        <span id="fileSize" class="ms-2"></span>
+                                        <button class="btn btn-sm btn-outline-danger float-end" id="removeFile">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Hash Options</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" id="md5" checked>
+                                        <label class="form-check-label">MD5</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" id="sha1" checked>
+                                        <label class="form-check-label">SHA-1</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" id="sha256" checked>
+                                        <label class="form-check-label">SHA-256</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" id="sha512">
+                                        <label class="form-check-label">SHA-512</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-check mt-2">
+                                <input class="form-check-input" type="checkbox" id="uppercase">
+                                <label class="form-check-label">Output in uppercase</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button id="generateBtn" class="btn btn-success mb-4">
+                        <i class="fas fa-cog"></i> Generate Hashes
+                    </button>
+
+                    <div id="results" class="d-none">
+                        <h3>Results</h3>
+                        <div class="results-container">
+                            <div id="md5Result" class="result-item">
+                                <div class="result-header">
+                                    <span class="badge bg-primary">MD5</span>
+                                    <button class="btn btn-sm btn-outline-secondary copy-btn">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                                <div class="result-content">
+                                    <code class="hash-output"></code>
+                                </div>
+                            </div>
+
+                            <div id="sha1Result" class="result-item">
+                                <div class="result-header">
+                                    <span class="badge bg-primary">SHA-1</span>
+                                    <button class="btn btn-sm btn-outline-secondary copy-btn">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                                <div class="result-content">
+                                    <code class="hash-output"></code>
+                                </div>
+                            </div>
+
+                            <div id="sha256Result" class="result-item">
+                                <div class="result-header">
+                                    <span class="badge bg-primary">SHA-256</span>
+                                    <button class="btn btn-sm btn-outline-secondary copy-btn">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                                <div class="result-content">
+                                    <code class="hash-output"></code>
+                                </div>
+                            </div>
+
+                            <div id="sha512Result" class="result-item">
+                                <div class="result-header">
+                                    <span class="badge bg-primary">SHA-512</span>
+                                    <button class="btn btn-sm btn-outline-secondary copy-btn">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                                <div class="result-content">
+                                    <code class="hash-output"></code>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-warning mt-4">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong>Security Note:</strong> All hashing is performed locally in your browser. 
+                        No data is transmitted to any server.
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="ad-container">
+                    Ad Space
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script src="/assets/js/common.js"></script>
+    <script src="/assets/js/tools/hash-generator.js"></script>
+</body>
+</html> 

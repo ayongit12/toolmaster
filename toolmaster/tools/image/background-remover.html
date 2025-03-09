@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Background Remover - Multi-Tools</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/tools.css">
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <main class="container py-4">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="tool-container">
+                    <h1>AI Background Remover</h1>
+                    
+                    <div class="alert alert-info mb-3">
+                        <h5>Features:</h5>
+                        <ul class="mb-0">
+                            <li>Multiple AI models for best results</li>
+                            <li>Smart edge detection</li>
+                            <li>Hair detail preservation</li>
+                            <li>Custom background options</li>
+                            <li>Batch processing support</li>
+                        </ul>
+                    </div>
+
+                    <div class="drop-zone mb-3" id="dropZone">
+                        <div class="text-center">
+                            <i class="fas fa-cloud-upload-alt fa-3x mb-3"></i>
+                            <p>Drag and drop your images here or</p>
+                            <input type="file" id="fileInput" accept="image/*" multiple class="d-none">
+                            <button class="btn btn-primary" onclick="document.getElementById('fileInput').click()">
+                                Choose Images
+                            </button>
+                            <p class="text-muted mt-2">Supports: JPG, PNG, WEBP (Max 15MB per image)</p>
+                        </div>
+                    </div>
+
+                    <div id="editorContainer" class="d-none">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-header d-flex justify-content-between align-items-center">
+                                        Original Image
+                                        <div class="btn-group btn-group-sm">
+                                            <button class="btn btn-outline-secondary" id="rotateLeftBtn">↺</button>
+                                            <button class="btn btn-outline-secondary" id="rotateRightBtn">↻</button>
+                                            <button class="btn btn-outline-secondary" id="cropBtn">Crop</button>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <img id="originalPreview" class="img-fluid" alt="Original">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-header">Result Preview</div>
+                                    <div class="card-body">
+                                        <img id="resultPreview" class="img-fluid" alt="Result">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label">AI Model</label>
+                                <select id="aiModel" class="form-select">
+                                    <option value="general">General Purpose</option>
+                                    <option value="portrait">Portrait Specialist</option>
+                                    <option value="product">Product Photography</option>
+                                    <option value="detailed">High Detail</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Output Format</label>
+                                <select id="outputFormat" class="form-select">
+                                    <option value="png">PNG with transparency</option>
+                                    <option value="jpg">JPEG with white background</option>
+                                    <option value="custom">Custom background</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div id="customBackgroundOptions" class="mb-3 d-none">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label class="form-label">Background Type</label>
+                                    <select id="bgType" class="form-select">
+                                        <option value="color">Solid Color</option>
+                                        <option value="gradient">Gradient</option>
+                                        <option value="image">Custom Image</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4" id="colorPickerContainer">
+                                    <label class="form-label">Background Color</label>
+                                    <input type="color" class="form-control" id="bgColor" value="#ffffff">
+                                </div>
+                                <div class="col-md-4 d-none" id="bgImageContainer">
+                                    <label class="form-label">Background Image</label>
+                                    <input type="file" class="form-control" id="bgImageInput" accept="image/*">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Advanced Options</label>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="enhanceEdges" checked>
+                                        <label class="form-check-label">Enhance Edges</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="preserveHair" checked>
+                                        <label class="form-check-label">Preserve Hair Details</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="hdOutput">
+                                        <label class="form-check-label">HD Output</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="batchProcessingContainer" class="mb-3 d-none">
+                            <div class="card">
+                                <div class="card-header">Batch Processing Queue</div>
+                                <div class="card-body">
+                                    <div id="imageQueue" class="row g-2"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="processingMessage" class="alert alert-info d-none">
+                            <div class="d-flex align-items-center">
+                                <div class="spinner-border spinner-border-sm me-2" role="status">
+                                    <span class="visually-hidden">Processing...</span>
+                                </div>
+                                <div>
+                                    Processing image... <span id="progressText">0%</span>
+                                </div>
+                            </div>
+                            <div class="progress mt-2">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated" 
+                                     id="progressBar" role="progressbar"></div>
+                            </div>
+                        </div>
+
+                        <div class="btn-toolbar">
+                            <button id="removeBtn" class="btn btn-success me-2">Remove Background</button>
+                            <button id="undoBtn" class="btn btn-outline-secondary me-2 d-none">Undo</button>
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle" type="button" 
+                                        id="downloadDropdown" data-bs-toggle="dropdown">
+                                    Download
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#" id="downloadPng">PNG with transparency</a></li>
+                                    <li><a class="dropdown-item" href="#" id="downloadJpg">JPEG with background</a></li>
+                                    <li><a class="dropdown-item" href="#" id="downloadHd">HD Quality</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#" id="downloadAll">Download All</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="ad-container">
+                    Ad Space
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+    <script src="/assets/js/common.js"></script>
+    <script src="/assets/js/tools/background-remover.js"></script>
+</body>
+</html> 

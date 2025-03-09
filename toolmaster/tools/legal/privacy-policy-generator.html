@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy Generator - Multi-Tools</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/tools.css">
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <main class="container py-4">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="tool-container">
+                    <h1>Privacy Policy Generator</h1>
+                    
+                    <div class="alert alert-info mb-4">
+                        Generate a comprehensive privacy policy for your website or app.
+                    </div>
+
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="mb-0">Basic Information</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label class="form-label">Company/Website Name</label>
+                                <input type="text" class="form-control" id="companyName" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Website URL</label>
+                                <input type="url" class="form-control" id="websiteUrl">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Contact Email</label>
+                                <input type="email" class="form-control" id="contactEmail" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="mb-0">Data Collection</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label class="form-label">What personal information do you collect?</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="collectName">
+                                    <label class="form-check-label">Name</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="collectEmail">
+                                    <label class="form-check-label">Email Address</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="collectPhone">
+                                    <label class="form-check-label">Phone Number</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="collectAddress">
+                                    <label class="form-check-label">Address</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="collectPayment">
+                                    <label class="form-check-label">Payment Information</label>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Automatic Data Collection</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="collectCookies">
+                                    <label class="form-check-label">Cookies</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="collectIp">
+                                    <label class="form-check-label">IP Address</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="collectUsage">
+                                    <label class="form-check-label">Usage Data</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="mb-0">Data Usage & Sharing</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label class="form-label">How do you use collected data?</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="useService">
+                                    <label class="form-check-label">Provide and maintain service</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="useAnalytics">
+                                    <label class="form-check-label">Analytics and improvements</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="useMarketing">
+                                    <label class="form-check-label">Marketing and communications</label>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Third-party Services</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="useAnalyticsServices">
+                                    <label class="form-check-label">Analytics (Google Analytics, etc.)</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="useAdvertising">
+                                    <label class="form-check-label">Advertising</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="usePaymentProcessors">
+                                    <label class="form-check-label">Payment Processors</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="mb-0">Additional Settings</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label class="form-label">User Rights</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="rightAccess" checked disabled>
+                                    <label class="form-check-label">Access personal data</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="rightCorrect" checked disabled>
+                                    <label class="form-check-label">Correct personal data</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="rightDelete" checked disabled>
+                                    <label class="form-check-label">Delete personal data</label>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Policy Format</label>
+                                <select class="form-select" id="policyFormat">
+                                    <option value="simple">Simple Language</option>
+                                    <option value="detailed">Detailed Legal</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="btn-toolbar mb-4">
+                        <button class="btn btn-primary me-2" id="generateBtn">
+                            <i class="fas fa-cog"></i> Generate Policy
+                        </button>
+                        <button class="btn btn-outline-secondary me-2" id="previewBtn" disabled>
+                            <i class="fas fa-eye"></i> Preview
+                        </button>
+                        <button class="btn btn-outline-success" id="downloadBtn" disabled>
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                    </div>
+
+                    <div id="previewModal" class="modal fade" tabindex="-1">
+                        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Privacy Policy Preview</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div id="policyPreview"></div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" id="copyBtn">
+                                        <i class="fas fa-copy"></i> Copy to Clipboard
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="ad-container">
+                    Ad Space
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/common.js"></script>
+    <script src="/assets/js/tools/privacy-policy-generator.js"></script>
+</body>
+</html> 

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matrix Calculator - Multi-Tools</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/tools.css">
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <main class="container py-4">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="tool-container">
+                    <h1>Matrix Calculator</h1>
+
+                    <div class="alert alert-info mb-4">
+                        Perform various matrix operations including addition, subtraction, 
+                        multiplication, and more.
+                    </div>
+
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="mb-0">Operation Selection</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <select class="form-select" id="operationType">
+                                        <option value="add">Addition (A + B)</option>
+                                        <option value="subtract">Subtraction (A - B)</option>
+                                        <option value="multiply">Multiplication (A × B)</option>
+                                        <option value="determinant">Determinant (|A|)</option>
+                                        <option value="inverse">Inverse (A⁻¹)</option>
+                                        <option value="transpose">Transpose (Aᵀ)</option>
+                                        <option value="power">Power (A^n)</option>
+                                        <option value="scalar">Scalar Multiplication (cA)</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3" id="scalarValueContainer" style="display: none;">
+                                    <input type="number" class="form-control" id="scalarValue" 
+                                           placeholder="Enter scalar value">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h5 class="mb-0">Matrix A</h5>
+                                    <div class="btn-group">
+                                        <button class="btn btn-sm btn-outline-secondary" id="randomizeA">
+                                            <i class="fas fa-random"></i> Random
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-secondary" id="clearA">
+                                            <i class="fas fa-eraser"></i> Clear
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <div class="row g-2">
+                                            <div class="col">
+                                                <label class="form-label">Rows</label>
+                                                <input type="number" class="form-control" id="rowsA" 
+                                                       value="3" min="1" max="10">
+                                            </div>
+                                            <div class="col">
+                                                <label class="form-label">Columns</label>
+                                                <input type="number" class="form-control" id="colsA" 
+                                                       value="3" min="1" max="10">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="matrix-container" id="matrixA"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="card" id="matrixBCard">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h5 class="mb-0">Matrix B</h5>
+                                    <div class="btn-group">
+                                        <button class="btn btn-sm btn-outline-secondary" id="randomizeB">
+                                            <i class="fas fa-random"></i> Random
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-secondary" id="clearB">
+                                            <i class="fas fa-eraser"></i> Clear
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <div class="row g-2">
+                                            <div class="col">
+                                                <label class="form-label">Rows</label>
+                                                <input type="number" class="form-control" id="rowsB" 
+                                                       value="3" min="1" max="10">
+                                            </div>
+                                            <div class="col">
+                                                <label class="form-label">Columns</label>
+                                                <input type="number" class="form-control" id="colsB" 
+                                                       value="3" min="1" max="10">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="matrix-container" id="matrixB"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-2 mb-4">
+                        <button class="btn btn-primary" id="calculateBtn">
+                            <i class="fas fa-calculator"></i> Calculate
+                        </button>
+                    </div>
+
+                    <div class="card mb-4" id="resultCard" style="display: none;">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">Result</h5>
+                            <div class="btn-group">
+                                <button class="btn btn-sm btn-outline-secondary" id="copyResult">
+                                    <i class="fas fa-copy"></i> Copy
+                                </button>
+                                <button class="btn btn-sm btn-outline-secondary" id="downloadResult">
+                                    <i class="fas fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div id="resultContainer"></div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="mb-0">Steps</h5>
+                        </div>
+                        <div class="card-body">
+                            <div id="stepsContainer"></div>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-warning">
+                        <h5><i class="fas fa-info-circle"></i> Notes:</h5>
+                        <ul class="mb-0">
+                            <li>Maximum matrix size is 10×10</li>
+                            <li>For addition and subtraction, matrices must have the same dimensions</li>
+                            <li>For multiplication, the number of columns in Matrix A must equal the number of rows in Matrix B</li>
+                            <li>Determinant and inverse operations require a square matrix</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="ad-container">
+                    Ad Space
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjs/lib/browser/math.js"></script>
+    <script src="/assets/js/common.js"></script>
+    <script src="/assets/js/tools/matrix-calculator.js"></script>
+</body>
+</html> 

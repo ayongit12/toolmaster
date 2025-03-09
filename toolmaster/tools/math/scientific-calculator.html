@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientific Calculator - Multi-Tools</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/tools.css">
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <main class="container py-4">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="tool-container">
+                    <h1>Scientific Calculator</h1>
+
+                    <div class="calculator-container">
+                        <div class="display-container mb-3">
+                            <div class="expression" id="expression"></div>
+                            <div class="result" id="result">0</div>
+                        </div>
+
+                        <div class="memory-display mb-2" id="memoryDisplay">
+                            <span class="memory-indicator"></span>
+                        </div>
+
+                        <div class="calculator-buttons">
+                            <div class="row g-1 mb-1">
+                                <div class="col">
+                                    <button class="btn btn-secondary w-100" data-action="memory-clear">MC</button>
+                                </div>
+                                <div class="col">
+                                    <button class="btn btn-secondary w-100" data-action="memory-recall">MR</button>
+                                </div>
+                                <div class="col">
+                                    <button class="btn btn-secondary w-100" data-action="memory-add">M+</button>
+                                </div>
+                                <div class="col">
+                                    <button class="btn btn-secondary w-100" data-action="memory-subtract">M-</button>
+                                </div>
+                                <div class="col">
+                                    <button class="btn btn-secondary w-100" data-action="memory-store">MS</button>
+                                </div>
+                            </div>
+
+                            <div class="row g-1 mb-1">
+                                <div class="col">
+                                    <button class="btn btn-outline-secondary w-100" data-action="function">2ⁿᵈ</button>
+                                </div>
+                                <div class="col">
+                                    <button class="btn btn-outline-secondary w-100" data-action="pi">π</button>
+                                </div>
+                                <div class="col">
+                                    <button class="btn btn-outline-secondary w-100" data-action="e">e</button>
+                                </div>
+                                <div class="col">
+                                    <button class="btn btn-outline-danger w-100" data-action="clear">C</button>
+                                </div>
+                                <div class="col">
+                                    <button class="btn btn-outline-danger w-100" data-action="backspace">⌫</button>
+                                </div>
+                            </div>
+
+                            <div class="row g-1 mb-1">
+                                <div class="col">
+                                    <button class="btn btn-outline-secondary w-100" data-action="square">x²</button>
+                                </div>
+                                <div class="col">
+                                    <button class="btn btn-outline-secondary w-100" data-action="cube">x³</button>
+                                </div>
+                                <div class="col">
+                                    <button class="btn btn-outline-secondary w-100" data-action="power">xʸ</button>
+                                </div>
+                                <div class="col">
+                                    <button class="btn btn-outline-secondary w-100" data-action="exp">EXP</button>
+                                </div>
+                                <div class="col">
+                                    <button class="btn btn-outline-secondary w-100" data-action="mod">mod</button>
+                                </div>
+                            </div>
+
+                            <div class="row g-1 mb-1">
+                                <div class="col">
+                                    <button class="btn btn-outline-secondary w-100" data-action="sqrt">√</button>
+                                </div>
+                                <div class="col">
+                                    <button class="btn btn-outline-secondary w-100" data-action="cbrt">∛</button>
+                                </div>
+                                <div class="col">
+                                    <button class="btn btn-outline-secondary w-100" data-action="root">ʸ√x</button>
+                                </div>
+                                <div class="col">
+                                    <button class="btn btn-outline-secondary w-100" data-action="log">log</button>
+                                </div>
+                                <div class="col">
+                                    <button class="btn btn-outline-secondary w-100" data-action="ln">ln</button>
+                                </div>
+                            </div>
+
+                            <div class="row g-1 mb-1">
+                                <div class="col">
+                                    <button class="btn btn-outline-secondary w-100" data-action="sin">sin</button>
+                                </div>
+                                <div class="col">
+                                    <button class="btn btn-outline-secondary w-100" data-action="cos">cos</button>
+                                </div>
+                                <div class="col">
+                                    <button class="btn btn-outline-secondary w-100" data-action="tan">tan</button>
+                                </div>
+                                <div class="col">
+                                    <button class="btn btn-outline-secondary w-100" data-action="factorial">x!</button>
+                                </div>
+                                <div class="col">
+                                    <button class="btn btn-outline-secondary w-100" data-action="inverse">1/x</button>
+                                </div>
+                            </div>
+
+                            <div class="row g-1 mb-1">
+                                <div class="col">
+                                    <button class="btn btn-outline-secondary w-100" data-action="asin">sin⁻¹</button>
+                                </div>
+                                <div class="col">
+                                    <button class="btn btn-outline-secondary w-100" data-action="acos">cos⁻¹</button>
+                                </div>
+                                <div class="col">
+                                    <button class="btn btn-outline-secondary w-100" data-action="atan">tan⁻¹</button>
+                                </div>
+                                <div class="col">
+                                    <button class="btn btn-outline-secondary w-100" data-action="rad">RAD</button>
+                                </div>
+                                <div class="col">
+                                    <button class="btn btn-outline-secondary w-100" data-action="deg">DEG</button>
+                                </div>
+                            </div>
+
+                            <div class="row g-1">
+                                <div class="col-9">
+                                    <div class="row g-1 mb-1">
+                                        <div class="col-4">
+                                            <button class="btn btn-light w-100" data-digit="7">7</button>
+                                        </div>
+                                        <div class="col-4">
+                                            <button class="btn btn-light w-100" data-digit="8">8</button>
+                                        </div>
+                                        <div class="col-4">
+                                            <button class="btn btn-light w-100" data-digit="9">9</button>
+                                        </div>
+                                    </div>
+                                    <div class="row g-1 mb-1">
+                                        <div class="col-4">
+                                            <button class="btn btn-light w-100" data-digit="4">4</button>
+                                        </div>
+                                        <div class="col-4">
+                                            <button class="btn btn-light w-100" data-digit="5">5</button>
+                                        </div>
+                                        <div class="col-4">
+                                            <button class="btn btn-light w-100" data-digit="6">6</button>
+                                        </div>
+                                    </div>
+                                    <div class="row g-1 mb-1">
+                                        <div class="col-4">
+                                            <button class="btn btn-light w-100" data-digit="1">1</button>
+                                        </div>
+                                        <div class="col-4">
+                                            <button class="btn btn-light w-100" data-digit="2">2</button>
+                                        </div>
+                                        <div class="col-4">
+                                            <button class="btn btn-light w-100" data-digit="3">3</button>
+                                        </div>
+                                    </div>
+                                    <div class="row g-1">
+                                        <div class="col-8">
+                                            <button class="btn btn-light w-100" data-digit="0">0</button>
+                                        </div>
+                                        <div class="col-4">
+                                            <button class="btn btn-light w-100" data-digit=".">.</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="row g-1 h-100">
+                                        <div class="col-12 mb-1">
+                                            <button class="btn btn-outline-primary w-100" data-operator="/">/</button>
+                                        </div>
+                                        <div class="col-12 mb-1">
+                                            <button class="btn btn-outline-primary w-100" data-operator="*">×</button>
+                                        </div>
+                                        <div class="col-12 mb-1">
+                                            <button class="btn btn-outline-primary w-100" data-operator="-">-</button>
+                                        </div>
+                                        <div class="col-12 mb-1">
+                                            <button class="btn btn-outline-primary w-100" data-operator="+">+</button>
+                                        </div>
+                                        <div class="col-12">
+                                            <button class="btn btn-primary w-100 h-100" data-action="equals">=</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mt-4">
+                        <div class="card-header">
+                            <h5 class="mb-0">Calculation History</h5>
+                        </div>
+                        <div class="card-body">
+                            <div id="history" class="calculation-history"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="ad-container">
+                    Ad Space
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/common.js"></script>
+    <script src="/assets/js/tools/scientific-calculator.js"></script>
+</body>
+</html> 

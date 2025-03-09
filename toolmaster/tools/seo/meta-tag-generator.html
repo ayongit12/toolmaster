@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meta Tag Generator - Multi-Tools</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/tools.css">
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <main class="container py-4">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="tool-container">
+                    <h1>Meta Tag Generator</h1>
+                    
+                    <form id="metaForm">
+                        <div class="mb-3">
+                            <label class="form-label">Page Title</label>
+                            <input type="text" id="pageTitle" class="form-control" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Description</label>
+                            <textarea id="description" class="form-control" rows="3" required></textarea>
+                            <div class="form-text">Recommended length: 150-160 characters</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Keywords</label>
+                            <input type="text" id="keywords" class="form-control">
+                            <div class="form-text">Separate keywords with commas</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Author</label>
+                            <input type="text" id="author" class="form-control">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Viewport</label>
+                            <select id="viewport" class="form-select">
+                                <option value="width=device-width, initial-scale=1.0">Responsive (Recommended)</option>
+                                <option value="width=1024">Fixed Width (1024px)</option>
+                                <option value="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">No Zoom</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Robots</label>
+                            <select id="robots" class="form-select">
+                                <option value="index, follow">Index, Follow (Default)</option>
+                                <option value="noindex, follow">No Index, Follow</option>
+                                <option value="index, nofollow">Index, No Follow</option>
+                                <option value="noindex, nofollow">No Index, No Follow</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Generate Meta Tags</button>
+                    </form>
+
+                    <div id="resultContainer" class="mt-4 d-none">
+                        <h3>Generated Meta Tags</h3>
+                        <div class="input-group">
+                            <textarea id="generatedCode" class="form-control" rows="10" readonly></textarea>
+                            <button class="btn btn-outline-secondary" id="copyBtn">Copy</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="ad-container">
+                    Ad Space
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/common.js"></script>
+    <script src="/assets/js/tools/meta-tag-generator.js"></script>
+</body>
+</html> 
